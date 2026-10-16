@@ -436,33 +436,6 @@ export default function Home() {
                     </span>
                   </div>
 
-                  <div className="mb-5 rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
-                    <div className="mb-3 flex items-center justify-between">
-                      <span className="text-xs uppercase tracking-[0.2em] text-slate-500">
-                        AI Core
-                      </span>
-                      <span className="rounded-full bg-emerald-500/10 px-2 py-1 text-[10px] text-emerald-300">
-                        online
-                      </span>
-                    </div>
-                    <div className="space-y-3 text-left">
-                      <div className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-950/70 px-3 py-2">
-                        <span className="text-xs text-slate-400">
-                          跨平台协同
-                        </span>
-                        <span className="text-sm font-semibold text-white">
-                          98%
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-950/70 px-3 py-2">
-                        <span className="text-xs text-slate-400">数据融合</span>
-                        <span className="text-sm font-semibold text-white">
-                          7.2s
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
                   <div className="flex flex-col items-center gap-3 rounded-2xl border border-amber-500/20 bg-gradient-to-br from-amber-500/10 to-yellow-500/5 p-6">
                     <div className="flex items-center gap-1.5 self-start text-[10px] uppercase tracking-[0.2em] text-amber-400/80">
                       <QrCode className="h-3.5 w-3.5" />
