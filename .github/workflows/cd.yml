@@ -38,7 +38,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "pnpm"
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -58,8 +58,9 @@ jobs:
           username: ${{ secrets.ALIYUN_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.ALIYUN_PORT || 22 }}
-          source: "deploy/"
-          target: "${{ secrets.ALIYUN_DEPLOY_DIR }}"
+          source: 'deploy/'
+          target: '${{ secrets.ALIYUN_DEPLOY_DIR }}'
+          strip_components: 1
 
       - name: Deploy and restart service
         uses: appleboy/ssh-action@v1.1.0

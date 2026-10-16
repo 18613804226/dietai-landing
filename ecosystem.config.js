@@ -4,7 +4,7 @@ module.exports = {
       name: 'DieTai-landing',
       script: 'node_modules/.bin/next',
       args: 'start -p 3000',
-      cwd: process.cwd(),
+      cwd: '/home/deploy/dietai-landing',
       env: {
         NODE_ENV: 'production'
       },
