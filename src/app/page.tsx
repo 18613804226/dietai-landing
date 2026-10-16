@@ -598,9 +598,20 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mx-auto mt-10 flex max-w-7xl flex-col items-center justify-between gap-4 border-t border-slate-800/60 px-6 pt-8 text-xs text-slate-500 md:flex-row">
-          <div>© {year} 叠态科技有限公司 Dietai Tech. All Rights Reserved.</div>
-          <div className="flex flex-wrap items-center gap-6">
+        <div className="mx-auto mt-10 flex max-w-7xl flex-col items-center gap-6 border-t border-slate-800/60 px-6 pt-8 text-xs text-slate-500">
+          <div className="flex items-center justify-center gap-2">
+            <span>© {year} 叠态科技有限公司 Dietai Tech. All Rights Reserved.</span>
+            <span>·</span>
+            <a
+              href="http://beian.miit.gov.cn/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-400 hover:text-amber-400"
+            >
+              闽ICP备2026040096号
+            </a>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-6">
             <span className="flex items-center gap-1">
               <ShieldCheck className="h-4 w-4 text-amber-400/80" />
               Enterprise Grade Security

@@ -1,0 +1,58 @@
+name: CD
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          package-manager-access: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Create deployment archive
+        run: |
+          mkdir -p deploy
+          cp -r .next public package.json next.config.ts pnpm-lock.yaml ecosystem.config.js deploy/
+
+      - name: Upload to Alibaba Cloud ECS
+        uses: appleboy/scp-action@v1.0.0
+        with:
+          host: ${{ secrets.ALIYUN_HOST }}
+          username: ${{ secrets.ALIYUN_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.ALIYUN_PORT || 22 }}
+          source: "deploy/"
+          target: "${{ secrets.ALIYUN_DEPLOY_DIR }}"
+
+      - name: Deploy and restart service
+        uses: appleboy/ssh-action@v1.1.0
+        with:
+          host: ${{ secrets.ALIYUN_HOST }}
+          username: ${{ secrets.ALIYUN_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.ALIYUN_PORT || 22 }}
+          script: |
+            cd ${{ secrets.ALIYUN_DEPLOY_DIR }}
+            pnpm install --prod
+            pm2 reload ecosystem.config.js --env production || pm2 start ecosystem.config.js --env production
