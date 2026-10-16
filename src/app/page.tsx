@@ -516,9 +516,9 @@ export default function Home() {
         className="relative z-10 mt-20 border-t border-slate-800/70 bg-[#070A10]"
       >
         <div className="mx-auto max-w-7xl px-6 py-14">
-          <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
-            <div>
-              <div className="mb-3 flex items-center gap-3">
+          <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+            <div className="max-w-md">
+              <div className="mb-4 flex items-center gap-3">
                 <div className="flex h-8 items-center">
                   <img
                     src="/logo-light-transparent.png"
@@ -530,42 +530,16 @@ export default function Home() {
                   叠态科技有限公司
                 </span>
               </div>
-              <a
-                href="http://beian.miit.gov.cn/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mb-4 inline-block text-xs text-slate-500 transition-colors hover:text-amber-400"
-              >
-                闽ICP备2026040096号
-              </a>
-              <p className="max-w-xs text-sm leading-relaxed text-slate-400">
+              <p className="text-sm leading-relaxed text-slate-400">
                 以极致的前端架构、数字孪生与 AI
                 智能体技术，为全球企业与合作伙伴提供卓越的数字化解决方案。
               </p>
             </div>
 
-            <div>
-              <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-                快速导航
-              </h3>
-              <ul className="space-y-3">
-                {navItems.map((item) => (
-                  <li key={item.href}>
-                    <a
-                      href={item.href}
-                      className="text-sm text-slate-400 transition-colors hover:text-amber-300"
-                    >
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+            <div className="shrink-0">
+              <div className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
                 联系我们
-              </h3>
+              </div>
               <ul className="space-y-3">
                 {contactItems.map(({ icon: Icon, label, value }) => (
                   <li
@@ -583,8 +557,19 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-12 border-t border-slate-800/60 pt-6 text-center text-xs text-slate-500">
-            © {year} 叠态科技有限公司 Dietai Tech. All Rights Reserved.
+          <div className="mt-12 flex flex-col items-center justify-center gap-2 border-t border-slate-800/60 pt-6 text-xs text-slate-500 sm:flex-row">
+            <span>
+              © {year} 叠态科技有限公司 Dietai Tech. All Rights Reserved.
+            </span>
+            <span className="hidden sm:inline">·</span>
+            <a
+              href="http://beian.miit.gov.cn/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-amber-400"
+            >
+              闽ICP备2026040096号
+            </a>
           </div>
         </div>
       </footer>
