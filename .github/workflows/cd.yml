@@ -13,6 +13,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Validate GitHub Secrets
+        run: |
+          if [ -z "${{ secrets.ALIYUN_HOST }}" ]; then
+            echo "::error::ALIYUN_HOST secret is not set. Please configure it in GitHub repository settings."
+            exit 1
+          fi
+          if [ -z "${{ secrets.SSH_PRIVATE_KEY }}" ]; then
+            echo "::error::SSH_PRIVATE_KEY secret is not set. Please configure it in GitHub repository settings."
+            exit 1
+          fi
+          if [ -z "${{ secrets.ALIYUN_USER }}" ]; then
+            echo "::error::ALIYUN_USER secret is not set. Please configure it in GitHub repository settings."
+            exit 1
+          fi
+          echo "All required secrets are configured."
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:

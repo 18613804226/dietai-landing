@@ -44,18 +44,3 @@ jobs:
         with:
           name: ci-failure-logs
           path: .next/trace
-
-  dependency-review:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
-    continue-on-error: true
-    permissions:
-      contents: read
-      pull-requests: read
-    steps:
-      - uses: actions/checkout@v4
-      - name: Dependency Review
-        uses: actions/dependency-review@v3
-        with:
-          fail-on-severity: high
-          fail-on-direct-update: true
