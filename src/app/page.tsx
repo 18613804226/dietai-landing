@@ -513,56 +513,78 @@ export default function Home() {
 
       <footer
         id="contact"
-        className="relative z-10 mt-20 border-t border-slate-800/70 bg-[#070A10] py-16"
+        className="relative z-10 mt-20 border-t border-slate-800/70 bg-[#070A10]"
       >
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-2">
-          <div>
-            <div className="mb-4 flex items-center gap-3">
-              <div className="flex h-8 items-center">
-                <img
-                  src="/logo-light-transparent.png"
-                  alt="Dietai Tech Logo"
-                  className="h-full w-full object-contain"
-                />
-              </div>
-              <div className="flex flex-col gap-1">
+        <div className="mx-auto max-w-7xl px-6 py-14">
+          <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
+            <div>
+              <div className="mb-3 flex items-center gap-3">
+                <div className="flex h-8 items-center">
+                  <img
+                    src="/logo-light-transparent.png"
+                    alt="Dietai Tech Logo"
+                    className="h-full w-full object-contain"
+                  />
+                </div>
                 <span className="text-lg font-bold tracking-[0.12em] text-white">
                   叠态科技有限公司
                 </span>
-                <a
-                  href="http://beian.miit.gov.cn/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-slate-400 hover:text-amber-400"
-                >
-                  闽ICP备2026040096号
-                </a>
               </div>
-            </div>
-            <p className="max-w-md text-sm leading-relaxed text-slate-400">
-              以极致的前端架构、数字孪生与 AI
-              智能体技术，为全球企业与合作伙伴提供卓越的数字化解决方案。
-            </p>
-          </div>
-
-          <div className="flex flex-col gap-3 md:items-end">
-            {contactItems.map(({ icon: Icon, label, value }) => (
-              <div
-                key={label}
-                className="flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-2.5 text-sm text-slate-300"
+              <a
+                href="http://beian.miit.gov.cn/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mb-4 inline-block text-xs text-slate-500 transition-colors hover:text-amber-400"
               >
-                <Icon className="h-4 w-4 text-amber-400/80" />
-                <span>
-                  {label}：<strong className="text-white">{value}</strong>
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
+                闽ICP备2026040096号
+              </a>
+              <p className="max-w-xs text-sm leading-relaxed text-slate-400">
+                以极致的前端架构、数字孪生与 AI
+                智能体技术，为全球企业与合作伙伴提供卓越的数字化解决方案。
+              </p>
+            </div>
 
-        <div className="mx-auto mt-10 flex max-w-7xl flex-col items-center gap-2 border-t border-slate-800/60 px-6 pt-8 text-xs text-slate-500">
-          <div className="flex items-center justify-center gap-2">
-            <span>© {year} 叠态科技有限公司 Dietai Tech. All Rights Reserved.</span>
+            <div>
+              <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                快速导航
+              </h3>
+              <ul className="space-y-3">
+                {navItems.map((item) => (
+                  <li key={item.href}>
+                    <a
+                      href={item.href}
+                      className="text-sm text-slate-400 transition-colors hover:text-amber-300"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                联系我们
+              </h3>
+              <ul className="space-y-3">
+                {contactItems.map(({ icon: Icon, label, value }) => (
+                  <li
+                    key={label}
+                    className="flex items-start gap-2 text-sm text-slate-400"
+                  >
+                    <Icon className="mt-0.5 h-4 w-4 shrink-0 text-amber-400/80" />
+                    <span>
+                      {label}：
+                      <span className="text-slate-300">{value}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-12 border-t border-slate-800/60 pt-6 text-center text-xs text-slate-500">
+            © {year} 叠态科技有限公司 Dietai Tech. All Rights Reserved.
           </div>
         </div>
       </footer>
