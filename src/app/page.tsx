@@ -12,7 +12,6 @@ import {
   Menu,
   Phone,
   QrCode,
-  ShieldCheck,
   Smartphone,
   Sparkles,
   X
@@ -100,33 +99,6 @@ const featureCards = [
 const contactItems = [
   { icon: Phone, label: '电话 / 微信', value: '18613804226' },
   { icon: Mail, label: '商务邮箱', value: '553807266@qq.com' }
-] as const
-
-const heroMetrics = [
-  { label: 'AI 工作流', value: '24/7' },
-  { label: '跨端覆盖', value: 'iOS / Android / Web' },
-  { label: '企业能力', value: '数字孪生 + 智能体' }
-] as const
-
-const trustPoints = [
-  {
-    icon: ShieldCheck,
-    title: '高可靠的工程落地',
-    description:
-      '从需求拆解到迭代交付，围绕稳定性、扩展性和运维保障体系持续推进。'
-  },
-  {
-    icon: Globe,
-    title: '多场景的数字协同',
-    description:
-      '覆盖 Web、App、数据中台、可视化大屏与智能体应用，多端协同一体化建设。'
-  },
-  {
-    icon: Sparkles,
-    title: '面向产业的创新能力',
-    description:
-      '结合 AI、数字孪生和前端工程能力，帮助企业在业务场景中加速落地创新。'
-  }
 ] as const
 
 const processSteps = [
@@ -318,26 +290,6 @@ export default function Home() {
             </a>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="mt-12 grid w-full max-w-5xl gap-4 md:grid-cols-3"
-          >
-            {heroMetrics.map((metric) => (
-              <div
-                key={metric.label}
-                className="rounded-2xl border border-slate-800 bg-slate-900/50 p-4 text-left backdrop-blur-sm shadow-[0_0_20px_rgba(15,23,42,0.6)]"
-              >
-                <div className="mb-2 text-[10px] uppercase tracking-[0.2em] text-slate-500">
-                  {metric.label}
-                </div>
-                <div className="text-lg font-semibold text-white">
-                  {metric.value}
-                </div>
-              </div>
-            ))}
-          </motion.div>
         </section>
 
         <section
@@ -573,9 +525,19 @@ export default function Home() {
                   className="h-full w-full object-contain"
                 />
               </div>
-              <span className="text-lg font-bold tracking-[0.12em] text-white">
-                叠态科技有限公司
-              </span>
+              <div className="flex flex-col gap-1">
+                <span className="text-lg font-bold tracking-[0.12em] text-white">
+                  叠态科技有限公司
+                </span>
+                <a
+                  href="http://beian.miit.gov.cn/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-slate-400 hover:text-amber-400"
+                >
+                  闽ICP备2026040096号
+                </a>
+              </div>
             </div>
             <p className="max-w-md text-sm leading-relaxed text-slate-400">
               以极致的前端架构、数字孪生与 AI
@@ -598,28 +560,9 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mx-auto mt-10 flex max-w-7xl flex-col items-center gap-6 border-t border-slate-800/60 px-6 pt-8 text-xs text-slate-500">
+        <div className="mx-auto mt-10 flex max-w-7xl flex-col items-center gap-2 border-t border-slate-800/60 px-6 pt-8 text-xs text-slate-500">
           <div className="flex items-center justify-center gap-2">
             <span>© {year} 叠态科技有限公司 Dietai Tech. All Rights Reserved.</span>
-            <span>·</span>
-            <a
-              href="http://beian.miit.gov.cn/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-slate-400 hover:text-amber-400"
-            >
-              闽ICP备2026040096号
-            </a>
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-6">
-            <span className="flex items-center gap-1">
-              <ShieldCheck className="h-4 w-4 text-amber-400/80" />
-              Enterprise Grade Security
-            </span>
-            <span className="flex items-center gap-1">
-              <Globe className="h-4 w-4 text-amber-400/80" />
-              Global Technology Ecosystem
-            </span>
           </div>
         </div>
       </footer>
