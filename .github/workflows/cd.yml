@@ -34,7 +34,7 @@ jobs:
       - name: Create deployment archive
         run: |
           mkdir -p deploy
-          cp -r .next public package.json next.config.ts pnpm-lock.yaml ecosystem.config.js deploy/
+          cp -r .next public package.json next.config.ts pnpm-lock.yaml pnpm-workspace.yaml ecosystem.config.js deploy/
 
       - name: Upload to Alibaba Cloud ECS
         uses: appleboy/scp-action@v1.0.0
@@ -55,5 +55,6 @@ jobs:
           port: ${{ secrets.ALIYUN_PORT || 22 }}
           script: |
             cd ${{ secrets.ALIYUN_DEPLOY_DIR }}
-            pnpm install --prod
+            npm install -g pnpm@9
+            pnpm install --prod --no-frozen-lockfile
             pm2 reload ecosystem.config.js --env production || pm2 start ecosystem.config.js --env production
