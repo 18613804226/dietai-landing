@@ -17,7 +17,6 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           version: 9
-          package-manager-access: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -54,7 +53,14 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.ALIYUN_PORT || 22 }}
           script: |
+            set -e
+            if ! command -v node &> /dev/null; then
+              echo "Node.js is not installed on the server" && exit 1
+            fi
             cd ${{ secrets.ALIYUN_DEPLOY_DIR }}
-            npm install -g pnpm@9
+            mkdir -p logs
+            if ! command -v pnpm &> /dev/null; then
+              sudo npm install -g pnpm@9 2>/dev/null || npm install -g pnpm@9
+            fi
             pnpm install --prod --no-frozen-lockfile
-            pm2 reload ecosystem.config.js --env production || pm2 start ecosystem.config.js --env production
+            pm2 reload ecosystem.config.js --env production 2>/dev/null || pm2 start ecosystem.config.js --env production
