@@ -27,7 +27,7 @@ const navItems = [
 // 域名备案通过后，只需修改下面这一处即可全站生效。
 const agentConfig = {
   // WEB 端智能体地址（备案通过后替换为正式域名，如 https://agent.dietai.com）
-  webUrl: 'https://agent.dietai.com',
+  webUrl: 'https://agent.dietai.space',
   // iOS App Store 下载地址（上架后替换，暂为 '#' 占位）
   iosUrl: '#',
   // Android 客户端下载地址（可指向应用商店或 APK 直链，暂为 '#' 占位）
@@ -289,7 +289,6 @@ export default function Home() {
               商务咨询
             </a>
           </motion.div>
-
         </section>
 
         <section
@@ -521,8 +520,7 @@ export default function Home() {
                   >
                     <Icon className="mt-0.5 h-4 w-4 shrink-0 text-amber-400/80" />
                     <span>
-                      {label}：
-                      <span className="text-slate-300">{value}</span>
+                      {label}：<span className="text-slate-300">{value}</span>
                     </span>
                   </li>
                 ))}
