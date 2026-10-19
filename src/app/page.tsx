@@ -406,7 +406,10 @@ export default function Home() {
                       className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-800/80 px-5 py-2.5 text-xs font-medium text-slate-200 transition-colors hover:bg-slate-700"
                     >
                       <Smartphone className="h-3.5 w-3.5" />
-                      🍎 iOS App Store (暂未发包，请使用H5体验)
+                      iOS
+                      <em className="text-xs text-gray-500">
+                        (暂未发包，请使用H5体验)
+                      </em>
                     </a>
                     <a
                       href={agentConfig.androidUrl}
@@ -415,7 +418,7 @@ export default function Home() {
                       className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-800/80 px-5 py-2.5 text-xs font-medium text-slate-200 transition-colors hover:bg-slate-700"
                     >
                       <Smartphone className="h-3.5 w-3.5" />
-                      🤖 Android 客户端
+                      Android 客户端
                     </a>
                   </div>
                 </div>
