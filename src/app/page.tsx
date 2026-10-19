@@ -29,12 +29,12 @@ const agentConfig = {
   // WEB 端智能体地址（备案通过后替换为正式域名，如 https://agent.dietai.com）
   webUrl: 'https://agent.dietai.space',
   // iOS App Store 下载地址（上架后替换，暂为 '#' 占位）
-  iosUrl: '#',
+  iosUrl: 'https://agent.dietai.space',
   // Android 客户端下载地址（可指向应用商店或 APK 直链，暂为 '#' 占位）
-  androidUrl: '#',
+  androidUrl: 'https://dietai.space/downloads/dietai-agent-latest.apk',
   // App 下载二维码图片：将二维码放入 public/agent-qr.png 后把这里改为 '/agent-qr.png'，
   // 留空字符串时页面自动显示占位二维码图案。
-  qrImage: ''
+  qrImage: '/downloads-qr.png'
 }
 
 // 生成确定性伪二维码点阵（占位用，接入真实二维码图片后可移除）
@@ -406,7 +406,7 @@ export default function Home() {
                       className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-800/80 px-5 py-2.5 text-xs font-medium text-slate-200 transition-colors hover:bg-slate-700"
                     >
                       <Smartphone className="h-3.5 w-3.5" />
-                      🍎 iOS App Store
+                      🍎 iOS App Store (暂未发包，请使用H5体验)
                     </a>
                     <a
                       href={agentConfig.androidUrl}
@@ -445,7 +445,7 @@ export default function Home() {
                         src={agentConfig.qrImage}
                         alt="叠态智能体 App 下载二维码"
                         className="h-[132px] w-[132px] rounded-lg bg-white p-1.5"
-                        onError={() => setQrFailed(true)}
+                        onError={() => setQrFailed(false)}
                       />
                     ) : (
                       <AgentQrPlaceholder />
