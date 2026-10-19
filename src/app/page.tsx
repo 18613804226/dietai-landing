@@ -447,7 +447,7 @@ export default function Home() {
                       <img
                         src={agentConfig.qrImage}
                         alt="叠态智能体 App 下载二维码"
-                        className="h-[132px] w-[132px] rounded-lg bg-white p-1.5"
+                        className="h-34 w-34 rounded-lg bg-white p-0.5"
                         onError={() => setQrFailed(false)}
                       />
                     ) : (
