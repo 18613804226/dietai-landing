@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import {
   ArrowRight,
   Bot,
@@ -63,9 +63,8 @@ function AgentQrPlaceholder() {
           Array.from({ length: 13 }, (_, c) => (
             <div
               key={`${r}-${c}`}
-              className={`aspect-square rounded-[1px] ${
-                isQrCell(r, c) ? 'bg-slate-900' : 'bg-transparent'
-              }`}
+              className={`aspect-square rounded-[1px] ${isQrCell(r, c) ? 'bg-slate-900' : 'bg-transparent'
+                }`}
             />
           ))
         )}
@@ -128,6 +127,7 @@ export default function Home() {
   const year = new Date().getFullYear()
   const [menuOpen, setMenuOpen] = useState(false)
   const [qrFailed, setQrFailed] = useState(false)
+  const shouldReduceMotion = useReducedMotion()
   const showQrImage = agentConfig.qrImage !== '' && !qrFailed
 
   return (
@@ -137,7 +137,7 @@ export default function Home() {
         <div className="absolute right-[6%] top-[12%] h-[26rem] w-[26rem] rounded-full bg-violet-500/10 blur-[140px]" />
         <div className="absolute bottom-[-6rem] left-1/2 h-[20rem] w-[20rem] -translate-x-1/2 rounded-full bg-cyan-500/12 blur-[150px]" />
         <div className="absolute left-1/2 top-1/2 h-[42rem] w-[42rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-amber-500/10" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.08)_1px,transparent_1px)] bg-[size:58px_58px] [mask-image:radial-gradient(circle_at_center,black_50%,transparent_90%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.05)_1px,transparent_1px)] bg-[size:58px_58px] [mask-image:radial-gradient(circle_at_center,black_50%,transparent_90%)]" />
       </div>
 
       <header className="fixed left-0 right-0 top-0 z-50 border-b border-slate-800/60 bg-[#0B0F19]/65 backdrop-blur-xl">
@@ -229,9 +229,9 @@ export default function Home() {
       <main className="relative z-10">
         <section className="mx-auto flex max-w-7xl flex-col items-center px-6 pb-20 pt-32 text-center md:pt-40">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6 }}
             className="mb-8 inline-flex items-center gap-2 rounded-full border border-slate-700/70 bg-slate-900/80 px-3.5 py-1.5 text-xs text-amber-300 backdrop-blur-sm"
           >
             <span className="h-2 w-2 rounded-full bg-amber-400 shadow-[0_0_12px_rgba(251,191,36,0.9)]" />
@@ -239,9 +239,13 @@ export default function Home() {
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={
+              shouldReduceMotion
+                ? { duration: 0 }
+                : { duration: 0.6, delay: 0.1 }
+            }
             className="mb-8 max-w-5xl text-4xl font-black leading-[1.05] tracking-[-0.04em] md:text-6xl lg:text-7xl"
           >
             构筑多维数字空间与
@@ -251,9 +255,13 @@ export default function Home() {
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={
+              shouldReduceMotion
+                ? { duration: 0 }
+                : { duration: 0.6, delay: 0.2 }
+            }
             className="mb-10 max-w-2xl text-base leading-relaxed text-slate-400 md:text-lg"
           >
             叠态科技专注于前端工程架构创新、多端智能体（AI
@@ -261,9 +269,13 @@ export default function Home() {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={
+              shouldReduceMotion
+                ? { duration: 0 }
+                : { duration: 0.6, delay: 0.3 }
+            }
             className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row"
           >
             <a
@@ -284,7 +296,7 @@ export default function Home() {
             </a>
             <a
               href="#contact"
-              className="flex w-full items-center justify-center rounded-xl border border-slate-700/70 bg-slate-900/60 px-8 py-3.5 text-sm font-medium text-slate-300 transition-all hover:border-slate-600 hover:bg-slate-800/80 hover:text-white sm:w-auto"
+              className="flex items-center justify-center px-2 py-1 text-xs font-medium text-slate-400 transition-colors hover:text-amber-300 sm:w-auto sm:rounded-xl sm:border sm:border-slate-700/70 sm:px-4 sm:py-3.5 sm:text-sm sm:text-slate-400"
             >
               商务咨询
             </a>
@@ -293,7 +305,7 @@ export default function Home() {
 
         <section
           id="features"
-          className="relative z-10 mx-auto max-w-7xl px-6 py-20"
+          className="relative z-10 mx-auto max-w-7xl scroll-mt-24 px-6 py-20"
         >
           <div className="mx-auto mb-14 max-w-2xl text-center">
             <div className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-amber-400/70">
@@ -308,10 +320,14 @@ export default function Home() {
             {featureCards.map(({ icon: Icon, title, description }, index) => (
               <motion.div
                 key={title}
-                initial={{ opacity: 0, y: 24 }}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 * index }}
-                className="group rounded-3xl border border-slate-800 bg-slate-900/50 p-8 shadow-[0_0_24px_rgba(15,23,42,0.6)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-amber-500/40 hover:shadow-[0_0_30px_rgba(251,191,36,0.12)]"
+                transition={
+                  shouldReduceMotion
+                    ? { duration: 0 }
+                    : { duration: 0.5, delay: 0.1 * index }
+                }
+                className="group h-full rounded-3xl border border-slate-800 bg-slate-900/50 p-8 shadow-[0_0_24px_rgba(15,23,42,0.6)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-amber-500/40 hover:shadow-[0_0_30px_rgba(251,191,36,0.12)]"
               >
                 <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl border border-amber-500/20 bg-amber-500/10 text-amber-300 transition-transform duration-300 group-hover:scale-110">
                   <Icon className="h-6 w-6" />
@@ -319,7 +335,7 @@ export default function Home() {
                 <h3 className="mb-3 text-xl font-semibold text-slate-100">
                   {title}
                 </h3>
-                <p className="text-sm leading-relaxed text-slate-400">
+                <p className="text-sm leading-relaxed text-slate-300/80">
                   {description}
                 </p>
               </motion.div>
@@ -355,15 +371,15 @@ export default function Home() {
             {processSteps.map(({ step, title, text }) => (
               <div
                 key={step}
-                className="rounded-2xl border border-slate-800 bg-slate-900/45 p-5"
+                className="h-full rounded-2xl border border-slate-800 bg-slate-900/45 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-amber-500/30 hover:bg-slate-900/70"
               >
-                <div className="mb-4 text-xs font-medium uppercase tracking-[0.26em] text-amber-300">
+                <div className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-amber-500/20 bg-amber-500/10 text-xs font-semibold tracking-wide text-amber-300">
                   {step}
                 </div>
                 <h3 className="mb-3 text-xl font-semibold text-white">
                   {title}
                 </h3>
-                <p className="text-sm leading-relaxed text-slate-400">{text}</p>
+                <p className="text-sm leading-relaxed text-slate-300/80">{text}</p>
               </div>
             ))}
           </div>
@@ -371,7 +387,7 @@ export default function Home() {
 
         <section
           id="agent"
-          className="relative z-10 mx-auto max-w-7xl px-6 py-20"
+          className="relative z-10 mx-auto max-w-7xl scroll-mt-24 px-6 py-20"
         >
           <div className="overflow-hidden rounded-[32px] border border-slate-800 bg-[radial-gradient(circle_at_20%_20%,rgba(251,191,36,0.1),transparent_20%),linear-gradient(135deg,rgba(15,23,42,0.9),rgba(15,23,42,0.75))] p-8 shadow-[0_0_32px_rgba(2,6,23,0.85)] md:p-12">
             <div className="flex flex-col items-center justify-between gap-12 md:flex-row">
@@ -383,7 +399,7 @@ export default function Home() {
                 <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">
                   随时随地，多端智能相伴
                 </h2>
-                <p className="mb-6 text-sm leading-relaxed text-slate-400">
+                <p className="mb-6 text-sm leading-relaxed text-slate-300/80">
                   基于 React Native 架构打造的叠态智能体客户端，现已支持
                   iOS、Android 及 Web 多端同步。随时唤醒你的专属 AI 助手。
                 </p>
@@ -398,17 +414,19 @@ export default function Home() {
                     <span>立即体验 WEB 版</span>
                     <ArrowRight className="h-4 w-4 text-amber-300 transition-transform group-hover:translate-x-1" />
                   </a>
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-col items-stretch gap-3 sm:flex-row">
                     <a
                       href={agentConfig.iosUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-800/80 px-5 py-2.5 text-xs font-medium text-slate-200 transition-colors hover:bg-slate-700"
+                      className="flex flex-1 items-center justify-center gap-1 rounded-xl border border-slate-700 bg-slate-800/80 px-5 py-2.5 text-xs font-medium text-slate-200 transition-colors hover:bg-slate-700"
                     >
-                      <Smartphone className="h-3.5 w-3.5" />
-                      iOS
-                      <em className="text-xs text-gray-500">
-                        (暂未发包，请使用H5体验)
+                      <span className="flex items-center justify-center gap-2">
+                        <Smartphone className="h-3.5 w-3.5" />
+                        iOS
+                      </span>
+                      <em className="text-[10.5px] font-normal text-slate-400">
+                        (暂未发包，请使用 H5 体验)
                       </em>
                     </a>
                     <a
@@ -488,7 +506,7 @@ export default function Home() {
 
       <footer
         id="contact"
-        className="relative z-10 mt-20 border-t border-slate-800/70 bg-[#070A10]"
+        className="relative z-10 mt-20 scroll-mt-24 border-t border-slate-800/70 bg-[#070A10]"
       >
         <div className="mx-auto max-w-7xl px-6 py-14">
           <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
